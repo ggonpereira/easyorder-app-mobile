@@ -1,10 +1,20 @@
 import * as S from './Main.styles';
-import { Text } from '../components/Text';
+import { Header } from '../components/Header';
 
 export const Main = () => {
   return (
-    <S.Container>
-      <Text>Renderizou</Text>
-    </S.Container>
+    <>
+      <S.Container>
+        <Header />
+
+        <S.CategoriesContainer></S.CategoriesContainer>
+
+        <S.MenuContainer></S.MenuContainer>
+      </S.Container>
+
+      <S.Footer>
+        <S.FooterContainer></S.FooterContainer>
+      </S.Footer>
+    </>
   );
 };
