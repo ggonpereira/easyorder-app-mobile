@@ -1,8 +1,13 @@
 import * as S from './Main.styles';
 import { Header } from '../components/Header';
 import { Categories } from '../components/Categories';
+import { Button } from '../components/Button';
 
 export const Main = () => {
+  const handleButtonPress = () => {
+    alert('Button was clicked!');
+  };
+
   return (
     <>
       <S.Container>
@@ -16,7 +21,11 @@ export const Main = () => {
       </S.Container>
 
       <S.Footer>
-        <S.FooterContainer></S.FooterContainer>
+        <S.FooterContainer>
+          <Button onPress={handleButtonPress} disabled>
+            New Order
+          </Button>
+        </S.FooterContainer>
       </S.Footer>
     </>
   );
