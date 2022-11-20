@@ -1,22 +1,32 @@
 export const categories = [
   {
-    _id: '6372d595f9ebdda354700c8d',
-    name: 'Pizza',
-    icon: '🍕',
+    _id: '6373d259975c92c95c31c70e',
+    name: 'Steaks',
+    icon: '🥩',
   },
   {
-    _id: '6372d5bff9ebdda354700c90',
-    name: 'Bebidas',
-    icon: '🍻',
-  },
-  {
-    _id: '6372d5d2f9ebdda354700c92',
-    name: 'Burgers',
+    _id: '6373d371291e71ed78d80bed',
+    name: 'Hamburgers',
     icon: '🍔',
   },
   {
-    _id: '6372d5dcf9ebdda354700c94',
-    name: 'Promoções',
-    icon: '🏷',
+    _id: '6373d395291e71ed78d80bef',
+    name: 'Drinks',
+    icon: '🍺',
+  },
+  {
+    _id: '6373d3ac291e71ed78d80bf1',
+    name: 'Pizzas',
+    icon: '🍕',
+  },
+  {
+    _id: '6373d48a291e71ed78d80bf3',
+    name: 'Offers',
+    icon: '💸',
+  },
+  {
+    _id: '6373d49f291e71ed78d80bf5',
+    name: 'Salads',
+    icon: '🥗',
   },
 ];
