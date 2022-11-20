@@ -1,5 +1,6 @@
 import * as S from './Main.styles';
 import { Header } from '../components/Header';
+import { Categories } from '../components/Categories';
 
 export const Main = () => {
   return (
@@ -7,7 +8,9 @@ export const Main = () => {
       <S.Container>
         <Header />
 
-        <S.CategoriesContainer></S.CategoriesContainer>
+        <S.CategoriesContainer>
+          <Categories />
+        </S.CategoriesContainer>
 
         <S.MenuContainer></S.MenuContainer>
       </S.Container>

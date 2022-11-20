@@ -6,7 +6,7 @@ export const categories = [
   },
   {
     _id: '6373d371291e71ed78d80bed',
-    name: 'Hamburgers',
+    name: 'Burgers',
     icon: '🍔',
   },
   {
