@@ -2,6 +2,7 @@ import * as S from './Main.styles';
 import { Header } from '../components/Header';
 import { Categories } from '../components/Categories';
 import { Button } from '../components/Button';
+import { Menu } from '../components/Menu';
 
 export const Main = () => {
   const handleButtonPress = () => {
@@ -17,7 +18,9 @@ export const Main = () => {
           <Categories />
         </S.CategoriesContainer>
 
-        <S.MenuContainer></S.MenuContainer>
+        <S.MenuContainer>
+          <Menu />
+        </S.MenuContainer>
       </S.Container>
 
       <S.Footer>
