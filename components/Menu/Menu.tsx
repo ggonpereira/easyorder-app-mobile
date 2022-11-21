@@ -1,6 +1,7 @@
-import { FlatList } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native';
 import { products } from '../../mocks/products';
 import { formatToLocalePrice } from '../../utils/functions';
+import { PlusCircle } from '../Icons/PlusCircle';
 import { Text } from '../Text';
 import * as S from './Menu.styles';
 
@@ -33,6 +34,10 @@ export const Menu = () => {
               {formatToLocalePrice(product.price)}
             </Text>
           </S.ProductDetails>
+
+          <S.AddToCartButton>
+            <PlusCircle />
+          </S.AddToCartButton>
         </S.Product>
       )}
     />
