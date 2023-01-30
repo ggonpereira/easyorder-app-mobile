@@ -1,9 +1,9 @@
 import * as S from './Main.styles';
-import { Header } from '../components/Header';
-import { Categories } from '../components/Categories';
-import { Button } from '../components/Button';
-import { Menu } from '../components/Menu';
-import { TableModal } from '../components/TableModal';
+import { Header } from '../Header';
+import { Categories } from '../Categories';
+import { Button } from '../Button';
+import { Menu } from '../Menu';
+import { TableModal } from '../TableModal';
 import { useState } from 'react';
 
 export const Main = () => {
