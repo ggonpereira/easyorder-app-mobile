@@ -1,6 +1,6 @@
 import { FlatList, TouchableOpacity } from 'react-native';
 import { products } from '../../mocks/products';
-import { formatToLocalePrice } from '../../utils/functions';
+import { formatToLocalePrice, trimLongText } from '../../utils/functions';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { Text } from '../Text';
 import * as S from './Menu.styles';
@@ -28,7 +28,7 @@ export const Menu = () => {
               size={14}
               style={{ marginVertical: 8, lineHeight: 21 }}
             >
-              {product.description}
+              {trimLongText(product.description)}
             </Text>
             <Text size={14} color="#333" weight="600">
               {formatToLocalePrice(product.price)}

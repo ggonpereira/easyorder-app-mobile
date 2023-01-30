@@ -22,10 +22,17 @@ export const Main = () => {
     setIsTableModalVisible(false);
   };
 
+  const handleCancelOrder = () => {
+    setSelectedTable('');
+  };
+
   return (
     <>
       <S.Container>
-        <Header />
+        <Header
+          selectedTable={selectedTable}
+          onCancelOrder={handleCancelOrder}
+        />
 
         <S.CategoriesContainer>
           <Categories />
