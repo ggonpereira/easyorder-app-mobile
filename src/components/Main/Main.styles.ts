@@ -17,11 +17,3 @@ export const CategoriesContainer = styled.View`
 export const MenuContainer = styled.View`
   flex: 1;
 `;
-
-export const Footer = styled.View`
-  background: #ffffff;
-  min-height: ${isAndroid ? '76px' : '110px'};
-  padding: 16px 24px;
-`;
-
-export const FooterContainer = styled.SafeAreaView``;

@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import * as S from './Main.styles';
 import { Header } from '../Header';
 import { Categories } from '../Categories';
 import { Button } from '../Button';
 import { Menu } from '../Menu';
 import { TableModal } from '../TableModal';
-import { useState } from 'react';
+import { Footer } from '../Footer';
 
 export const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
@@ -43,13 +44,11 @@ export const Main = () => {
         </S.MenuContainer>
       </S.Container>
 
-      <S.Footer>
-        <S.FooterContainer>
-          {!selectedTable && (
-            <Button onPress={handleButtonPress}>New Order</Button>
-          )}
-        </S.FooterContainer>
-      </S.Footer>
+      <Footer>
+        {!selectedTable && (
+          <Button onPress={handleButtonPress}>New Order</Button>
+        )}
+      </Footer>
 
       <TableModal
         visible={isTableModalVisible}
