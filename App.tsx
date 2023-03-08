@@ -3,6 +3,7 @@ import { Main } from './src/components/Main';
 
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
+import { CartProvider } from './src/context/CartContext';
 
 export default function App() {
   const [isFontsLoaded] = useFonts({
@@ -13,5 +14,9 @@ export default function App() {
 
   if (!isFontsLoaded) return null;
 
-  return <Main />;
+  return (
+    <CartProvider>
+      <Main />
+    </CartProvider>
+  );
 }

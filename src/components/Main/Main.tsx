@@ -6,6 +6,7 @@ import { Button } from '../Button';
 import { Menu } from '../Menu';
 import { TableModal } from '../TableModal';
 import { Footer } from '../Footer';
+import { Cart } from '../Cart';
 
 export const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
@@ -48,6 +49,8 @@ export const Main = () => {
         {!selectedTable && (
           <Button onPress={handleButtonPress}>New Order</Button>
         )}
+
+        {selectedTable && <Cart />}
       </Footer>
 
       <TableModal

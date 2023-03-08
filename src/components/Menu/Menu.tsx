@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { FlatList } from 'react-native';
+import { useCartContext } from '../../context/CartContext';
 import { products } from '../../mocks/products';
 import { Product } from '../../types/Product';
 import { formatToLocalePrice, trimLongText } from '../../utils/functions';
@@ -11,6 +12,8 @@ import * as S from './Menu.styles';
 export const Menu = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const selectedProduct = useRef<null | Product>(null);
+
+  const { handleAddItemToCart } = useCartContext();
 
   const handleOpenModal = (product: Product) => {
     selectedProduct.current = product;
@@ -58,7 +61,7 @@ export const Menu = () => {
               </Text>
             </S.ProductDetails>
 
-            <S.AddToCartButton>
+            <S.AddToCartButton onPress={() => handleAddItemToCart(product)}>
               <PlusCircle />
             </S.AddToCartButton>
           </S.Product>

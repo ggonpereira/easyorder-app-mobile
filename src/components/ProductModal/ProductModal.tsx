@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, Modal } from 'react-native';
 import { Product } from '../../types/Product';
+import { formatToLocalePrice } from '../../utils/functions';
 import { Button } from '../Button';
 import { Footer } from '../Footer';
 import { Close } from '../Icons/Close';
@@ -80,10 +81,7 @@ export const ProductModal = ({
             <Text color="#666666">Price</Text>
 
             <Text weight="600" size={18}>
-              $&nbsp;
-              {product.price.toLocaleString(undefined, {
-                minimumFractionDigits: 2,
-              })}
+              {formatToLocalePrice(product.price)}
             </Text>
           </S.PriceArea>
 
