@@ -7,30 +7,39 @@ import { formatToLocalePrice, trimLongText } from '../../utils/functions';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { ProductModal } from '../ProductModal';
 import { Text } from '../Text';
+import { MenuProps } from './interfaces';
 import * as S from './Menu.styles';
 
-export const Menu = () => {
+export const Menu = ({ selectedTable, handleOpenNewOrderModal }: MenuProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const selectedProduct = useRef<null | Product>(null);
 
-  const { handleAddItemToCart } = useCartContext();
+  const { handleAddItemToCart: addItemToCart } = useCartContext();
 
-  const handleOpenModal = (product: Product) => {
+  const handleOpenProductModal = (product: Product) => {
     selectedProduct.current = product;
     setIsModalVisible(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseProductModal = () => {
     selectedProduct.current = null;
     setIsModalVisible(false);
+  };
+
+  const handleAddItemToCart = (product: Product) => {
+    if (!selectedTable) {
+      handleOpenNewOrderModal();
+    }
+    addItemToCart(product);
   };
 
   return (
     <>
       <ProductModal
         visible={isModalVisible}
-        onClose={handleCloseModal}
+        onClose={handleCloseProductModal}
         product={selectedProduct.current}
+        addItemToCart={handleAddItemToCart}
       />
 
       <FlatList
@@ -40,7 +49,7 @@ export const Menu = () => {
         contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24 }}
         ItemSeparatorComponent={S.Separator}
         renderItem={({ item: product }) => (
-          <S.Product onPress={() => handleOpenModal(product)}>
+          <S.Product onPress={() => handleOpenProductModal(product)}>
             <S.ProductImage
               source={{
                 uri: `http://192.168.0.109:3001/uploads/${product.imagePath}`,

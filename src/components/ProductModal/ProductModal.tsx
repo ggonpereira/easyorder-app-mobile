@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, Modal } from 'react-native';
+import { useCartContext } from '../../context/CartContext';
 import { Product } from '../../types/Product';
 import { formatToLocalePrice } from '../../utils/functions';
 import { Button } from '../Button';
@@ -12,14 +13,21 @@ interface ProductModalProps {
   visible: boolean;
   onClose: () => void;
   product: Product | null;
+  addItemToCart: (p: Product) => void;
 }
 
 export const ProductModal = ({
   visible,
   onClose,
   product,
+  addItemToCart,
 }: ProductModalProps) => {
   if (!product) return null;
+
+  const handleAddItemToCart = () => {
+    addItemToCart(product);
+    onClose();
+  };
 
   return (
     <Modal
@@ -85,7 +93,7 @@ export const ProductModal = ({
             </Text>
           </S.PriceArea>
 
-          <Button onPress={() => {}}>Add to order</Button>
+          <Button onPress={handleAddItemToCart}>Add to order</Button>
         </S.FooterContent>
       </Footer>
     </Modal>

@@ -24,3 +24,14 @@ export const Actions = styled.View`
   flex-direction: row;
   justify-content: flex-end;
 `;
+
+export const Summary = styled.View`
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const TotalContainer = styled.View`
+  flex: 1;
+  margin-right: 12px;
+`;

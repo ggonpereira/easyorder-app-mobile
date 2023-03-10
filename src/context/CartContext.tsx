@@ -6,6 +6,7 @@ interface CartContextProps {
   cartItems: CartItem[];
   handleAddItemToCart: (itemToAdd: Product) => void;
   handleRemoveItemFromCart: (itemToRemove: Product) => void;
+  handleClearCart: () => void;
 }
 
 interface CartProviderProps {
@@ -68,12 +69,17 @@ export function CartProvider({ children }: CartProviderProps) {
     setCartItems((prevState) => removeItem(prevState, itemToRemove));
   }, []);
 
+  const handleClearCart = useCallback(() => {
+    setCartItems([]);
+  }, []);
+
   return (
     <CartContext.Provider
       value={{
         cartItems,
         handleAddItemToCart,
         handleRemoveItemFromCart,
+        handleClearCart,
       }}
     >
       {children}

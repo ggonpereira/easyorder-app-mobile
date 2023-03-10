@@ -7,10 +7,12 @@ import { Menu } from '../Menu';
 import { TableModal } from '../TableModal';
 import { Footer } from '../Footer';
 import { Cart } from '../Cart';
+import { useCartContext } from '../../context/CartContext';
 
 export const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
+  const { handleClearCart } = useCartContext();
 
   const handleSaveTable = (table: string) => {
     setSelectedTable(table);
@@ -26,6 +28,7 @@ export const Main = () => {
 
   const handleCancelOrder = () => {
     setSelectedTable('');
+    handleClearCart();
   };
 
   return (
@@ -41,7 +44,10 @@ export const Main = () => {
         </S.CategoriesContainer>
 
         <S.MenuContainer>
-          <Menu />
+          <Menu
+            selectedTable={selectedTable}
+            handleOpenNewOrderModal={handleButtonPress}
+          />
         </S.MenuContainer>
       </S.Container>
 
