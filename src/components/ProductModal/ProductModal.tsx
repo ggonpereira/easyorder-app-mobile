@@ -1,20 +1,12 @@
 import React from 'react';
 import { FlatList, Modal } from 'react-native';
-import { useCartContext } from '../../context/CartContext';
-import { Product } from '../../types/Product';
 import { formatToLocalePrice } from '../../utils/functions';
 import { Button } from '../Button';
 import { Footer } from '../Footer';
 import { Close } from '../Icons/Close';
 import { Text } from '../Text';
 import * as S from './ProductModal.styles';
-
-interface ProductModalProps {
-  visible: boolean;
-  onClose: () => void;
-  product: Product | null;
-  addItemToCart: (p: Product) => void;
-}
+import { ProductModalProps } from './interfaces';
 
 export const ProductModal = ({
   visible,

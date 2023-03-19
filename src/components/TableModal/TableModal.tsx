@@ -4,14 +4,9 @@ import { Button } from '../Button';
 import { Close } from '../Icons/Close';
 import { Text } from '../Text';
 import * as S from './TableModal.styles';
+import { TableModalProps } from './interfaces';
 
 const isAndroid = Platform.OS === 'android';
-
-interface TableModalProps {
-  visible: boolean;
-  onClose: () => void;
-  onSave: (table: string) => void;
-}
 
 export const TableModal = ({ visible, onClose, onSave }: TableModalProps) => {
   const [table, setTable] = useState('');

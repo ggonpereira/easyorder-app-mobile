@@ -1,12 +1,6 @@
-import { ReactNode } from 'react';
 import { Text } from '../Text';
 import * as S from './Button.styles';
-
-interface ButtonProps {
-  children: ReactNode;
-  onPress: () => void;
-  disabled?: boolean;
-}
+import { ButtonProps } from './interfaces';
 
 export const Button = ({ children, onPress, disabled }: ButtonProps) => {
   return (

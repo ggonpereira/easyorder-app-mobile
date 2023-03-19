@@ -1,11 +1,7 @@
 import { TouchableOpacity } from 'react-native';
 import { Text } from '../Text';
 import * as S from './Header.styles';
-
-interface HeaderProps {
-  selectedTable: string;
-  onCancelOrder: () => void;
-}
+import { HeaderProps } from './interfaces';
 
 export const Header = ({ selectedTable, onCancelOrder }: HeaderProps) => {
   return (
