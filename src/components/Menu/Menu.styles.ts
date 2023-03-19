@@ -28,3 +28,9 @@ export const AddToCartButton = styled.TouchableOpacity`
   position: absolute;
   right: 0;
 `;
+
+export const CenteredContainer = styled.View`
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+`;

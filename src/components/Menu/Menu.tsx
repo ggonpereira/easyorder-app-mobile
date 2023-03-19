@@ -2,16 +2,20 @@ import { Skeleton } from '@rneui/themed/dist/Skeleton';
 import { useRef, useState } from 'react';
 import { FlatList } from 'react-native';
 import { useCartContext } from '../../context/CartContext';
-import { products } from '../../mocks/products';
 import { Product } from '../../types/Product';
 import { formatToLocalePrice, trimLongText } from '../../utils/functions';
+import { Empty } from '../Icons/Empty';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { ProductModal } from '../ProductModal';
 import { Text } from '../Text';
 import { MenuProps } from './interfaces';
 import * as S from './Menu.styles';
 
-const LoadedMenu = ({ selectedTable, handleOpenNewOrderModal }: MenuProps) => {
+const LoadedMenu = ({
+  products,
+  selectedTable,
+  handleOpenNewOrderModal,
+}: MenuProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const selectedProduct = useRef<null | Product>(null);
 
@@ -33,6 +37,18 @@ const LoadedMenu = ({ selectedTable, handleOpenNewOrderModal }: MenuProps) => {
     }
     addItemToCart(product);
   };
+
+  if (products.length === 0) {
+    return (
+      <S.CenteredContainer>
+        <Empty />
+
+        <Text style={{ marginTop: 24 }} weight="600" color="#666666">
+          No products found!
+        </Text>
+      </S.CenteredContainer>
+    );
+  }
 
   return (
     <>
@@ -94,6 +110,7 @@ const LoadingMenu = () => (
 );
 
 export const Menu = ({
+  products,
   selectedTable,
   handleOpenNewOrderModal,
   isLoading,
@@ -103,6 +120,7 @@ export const Menu = ({
       <LoadingMenu />
     ) : (
       <LoadedMenu
+        products={products}
         selectedTable={selectedTable}
         handleOpenNewOrderModal={handleOpenNewOrderModal}
       />
