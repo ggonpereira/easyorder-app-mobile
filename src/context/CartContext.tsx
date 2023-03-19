@@ -5,7 +5,7 @@ import { Product } from '../types/Product';
 interface CartContextProps {
   cartItems: CartItem[];
   handleAddItemToCart: (itemToAdd: Product) => void;
-  handleRemoveItemFromCart: (itemToRemove: Product) => void;
+  handleDecrementItemFromCart: (itemToRemove: Product) => void;
   handleClearCart: () => void;
 }
 
@@ -65,7 +65,7 @@ export function CartProvider({ children }: CartProviderProps) {
     });
   }, []);
 
-  const handleRemoveItemFromCart = useCallback((itemToRemove: Product) => {
+  const handleDecrementItemFromCart = useCallback((itemToRemove: Product) => {
     setCartItems((prevState) => removeItem(prevState, itemToRemove));
   }, []);
 
@@ -78,7 +78,7 @@ export function CartProvider({ children }: CartProviderProps) {
       value={{
         cartItems,
         handleAddItemToCart,
-        handleRemoveItemFromCart,
+        handleDecrementItemFromCart,
         handleClearCart,
       }}
     >

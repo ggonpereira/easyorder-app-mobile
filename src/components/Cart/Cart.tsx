@@ -9,7 +9,7 @@ import { Text } from '../Text';
 import * as S from './Cart.styles';
 
 export const Cart = () => {
-  const { cartItems, handleAddItemToCart, handleRemoveItemFromCart } =
+  const { cartItems, handleAddItemToCart, handleDecrementItemFromCart } =
     useCartContext();
   const totalPrice = cartItems.reduce(
     (prev, curr) => prev + curr.product.price * curr.quantity,
@@ -65,7 +65,7 @@ export const Cart = () => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={() => handleRemoveItemFromCart(product)}
+                  onPress={() => handleDecrementItemFromCart(product)}
                 >
                   <MinusCircle />
                 </TouchableOpacity>
