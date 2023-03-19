@@ -14,6 +14,7 @@ export const Cart = ({ handleConfirmOrder }: CartProps) => {
   const { cartItems, handleAddItemToCart, handleDecrementItemFromCart } =
     useCartContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const totalPrice = cartItems.reduce(
     (prev, curr) => prev + curr.product.price * curr.quantity,
@@ -107,7 +108,11 @@ export const Cart = ({ handleConfirmOrder }: CartProps) => {
           )}
         </S.TotalContainer>
 
-        <Button onPress={handleOpenModal} disabled={cartItems.length === 0}>
+        <Button
+          onPress={handleOpenModal}
+          disabled={cartItems.length === 0}
+          isLoading={isLoading}
+        >
           Confirm Order
         </Button>
       </S.Summary>

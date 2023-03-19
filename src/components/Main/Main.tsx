@@ -12,6 +12,8 @@ import { useCartContext } from '../../context/CartContext';
 export const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
   const { handleClearCart } = useCartContext();
 
   const handleSaveTable = (table: string) => {
@@ -40,20 +42,23 @@ export const Main = () => {
         />
 
         <S.CategoriesContainer>
-          <Categories />
+          <Categories isLoading={isLoading} />
         </S.CategoriesContainer>
 
         <S.MenuContainer>
           <Menu
             selectedTable={selectedTable}
             handleOpenNewOrderModal={handleButtonPress}
+            isLoading={isLoading}
           />
         </S.MenuContainer>
       </S.Container>
 
       <Footer>
         {!selectedTable && (
-          <Button onPress={handleButtonPress}>New Order</Button>
+          <Button onPress={handleButtonPress} isLoading={isLoading}>
+            New Order
+          </Button>
         )}
 
         {selectedTable && <Cart handleConfirmOrder={handleResetOrder} />}

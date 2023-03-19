@@ -1,3 +1,4 @@
+import { Skeleton } from '@rneui/themed/dist/Skeleton';
 import { useRef, useState } from 'react';
 import { FlatList } from 'react-native';
 import { useCartContext } from '../../context/CartContext';
@@ -10,7 +11,7 @@ import { Text } from '../Text';
 import { MenuProps } from './interfaces';
 import * as S from './Menu.styles';
 
-export const Menu = ({ selectedTable, handleOpenNewOrderModal }: MenuProps) => {
+const LoadedMenu = ({ selectedTable, handleOpenNewOrderModal }: MenuProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const selectedProduct = useRef<null | Product>(null);
 
@@ -79,3 +80,32 @@ export const Menu = ({ selectedTable, handleOpenNewOrderModal }: MenuProps) => {
     </>
   );
 };
+
+const LoadingMenu = () => (
+  <FlatList
+    data={[...Array(6)]}
+    style={{ marginTop: 32 }}
+    contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24 }}
+    ItemSeparatorComponent={S.Separator}
+    renderItem={({ index }) => (
+      <Skeleton key={index} height={105} style={{ marginRight: 12 }} />
+    )}
+  />
+);
+
+export const Menu = ({
+  selectedTable,
+  handleOpenNewOrderModal,
+  isLoading,
+}: MenuProps) => (
+  <>
+    {isLoading ? (
+      <LoadingMenu />
+    ) : (
+      <LoadedMenu
+        selectedTable={selectedTable}
+        handleOpenNewOrderModal={handleOpenNewOrderModal}
+      />
+    )}
+  </>
+);
