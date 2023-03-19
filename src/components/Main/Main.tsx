@@ -26,7 +26,7 @@ export const Main = () => {
     setIsTableModalVisible(false);
   };
 
-  const handleCancelOrder = () => {
+  const handleResetOrder = () => {
     setSelectedTable('');
     handleClearCart();
   };
@@ -36,7 +36,7 @@ export const Main = () => {
       <S.Container>
         <Header
           selectedTable={selectedTable}
-          onCancelOrder={handleCancelOrder}
+          onCancelOrder={handleResetOrder}
         />
 
         <S.CategoriesContainer>
@@ -56,7 +56,7 @@ export const Main = () => {
           <Button onPress={handleButtonPress}>New Order</Button>
         )}
 
-        {selectedTable && <Cart />}
+        {selectedTable && <Cart handleConfirmOrder={handleResetOrder} />}
       </Footer>
 
       <TableModal
