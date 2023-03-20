@@ -1,12 +1,11 @@
 import { Skeleton } from '@rneui/themed';
 import { useState } from 'react';
 import { FlatList } from 'react-native';
-import { categories } from '../../mocks/categories';
 import { Text } from '../Text';
 import * as S from './Categories.styles';
 import { CategoriesProps } from './interfaces';
 
-const LoadedCategories = () => {
+const LoadedCategories = ({ categories }: CategoriesProps) => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleSelectCategory = (id: string) => {
@@ -60,6 +59,14 @@ const LoadingCategories = () => {
   );
 };
 
-export const Categories = ({ isLoading }: CategoriesProps) => {
-  return <>{isLoading ? <LoadingCategories /> : <LoadedCategories />}</>;
+export const Categories = ({ isLoading, categories }: CategoriesProps) => {
+  return (
+    <>
+      {isLoading ? (
+        <LoadingCategories />
+      ) : (
+        <LoadedCategories categories={categories} />
+      )}
+    </>
+  );
 };

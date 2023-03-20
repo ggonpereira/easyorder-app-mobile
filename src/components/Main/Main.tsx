@@ -8,13 +8,15 @@ import { TableModal } from '../TableModal';
 import { Footer } from '../Footer';
 import { Cart } from '../Cart';
 import { useCartContext } from '../../context/CartContext';
-import { products as productsMock } from '../../mocks/products';
+import { Product } from '../../types/Product';
+import { Category } from '../../types/Category';
 
 export const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
   const [isLoading] = useState(false);
-  const [products] = useState(productsMock);
+  const [products] = useState<Product[]>([]);
+  const [categories] = useState<Category[]>([]);
 
   const { handleClearCart } = useCartContext();
 
@@ -44,7 +46,7 @@ export const Main = () => {
         />
 
         <S.CategoriesContainer>
-          <Categories isLoading={isLoading} />
+          <Categories categories={categories} isLoading={isLoading} />
         </S.CategoriesContainer>
 
         <S.MenuContainer>

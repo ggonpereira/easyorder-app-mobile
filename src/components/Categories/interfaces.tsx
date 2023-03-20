@@ -1,3 +1,6 @@
+import { Category } from '../../types/Category';
+
 export interface CategoriesProps {
-  isLoading: boolean;
+  isLoading?: boolean;
+  categories: Category[];
 }
