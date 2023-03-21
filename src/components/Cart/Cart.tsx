@@ -1,3 +1,4 @@
+import { API_URL } from '@env';
 import React, { useState } from 'react';
 import { FlatList, TouchableOpacity } from 'react-native';
 import { useCartContext } from '../../context/CartContext';
@@ -50,7 +51,7 @@ export const Cart = ({ handleConfirmOrder }: CartProps) => {
               <S.Product>
                 <S.ProductImage
                   source={{
-                    uri: `http://192.168.0.109:3001/uploads/${product.imagePath}`,
+                    uri: `${API_URL}/uploads/${product.imagePath}`,
                   }}
                 />
 

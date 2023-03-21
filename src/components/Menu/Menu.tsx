@@ -1,3 +1,4 @@
+import { API_URL } from '@env';
 import { Skeleton } from '@rneui/themed/dist/Skeleton';
 import { useRef, useState } from 'react';
 import { FlatList } from 'react-native';
@@ -69,7 +70,7 @@ const LoadedMenu = ({
           <S.Product onPress={() => handleOpenProductModal(product)}>
             <S.ProductImage
               source={{
-                uri: `http://192.168.0.109:3001/uploads/${product.imagePath}`,
+                uri: `${API_URL}/uploads/${product.imagePath}`,
               }}
             />
 

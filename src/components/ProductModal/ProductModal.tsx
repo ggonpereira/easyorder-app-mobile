@@ -7,6 +7,7 @@ import { Close } from '../Icons/Close';
 import { Text } from '../Text';
 import * as S from './ProductModal.styles';
 import { ProductModalProps } from './interfaces';
+import { API_URL } from '@env';
 
 export const ProductModal = ({
   visible,
@@ -30,7 +31,7 @@ export const ProductModal = ({
     >
       <S.Image
         source={{
-          uri: `http://192.168.0.109:3001/uploads/${product.imagePath}`,
+          uri: `${API_URL}/uploads/${product.imagePath}`,
         }}
       >
         <S.CloseButton onPress={onClose}>
