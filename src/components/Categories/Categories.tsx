@@ -5,12 +5,19 @@ import { Text } from '../Text';
 import * as S from './Categories.styles';
 import { CategoriesProps } from './interfaces';
 
-const LoadedCategories = ({ categories }: CategoriesProps) => {
+const LoadedCategories = ({
+  categories,
+  onSelectCategory,
+}: CategoriesProps) => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  const handleSelectCategory = (id: string) => {
-    if (id === selectedCategory) return setSelectedCategory('');
+  const handleSelectCategory = async (id: string) => {
+    if (id === selectedCategory) {
+      onSelectCategory('');
+      return setSelectedCategory('');
+    }
     setSelectedCategory(id);
+    onSelectCategory(id);
   };
 
   return (
@@ -59,13 +66,20 @@ const LoadingCategories = () => {
   );
 };
 
-export const Categories = ({ isLoading, categories }: CategoriesProps) => {
+export const Categories = ({
+  isLoading,
+  categories,
+  onSelectCategory,
+}: CategoriesProps) => {
   return (
     <>
       {isLoading ? (
         <LoadingCategories />
       ) : (
-        <LoadedCategories categories={categories} />
+        <LoadedCategories
+          categories={categories}
+          onSelectCategory={onSelectCategory}
+        />
       )}
     </>
   );

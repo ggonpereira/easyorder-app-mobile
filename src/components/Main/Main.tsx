@@ -11,7 +11,10 @@ import { useCartContext } from '../../context/CartContext';
 import { Product } from '../../types/Product';
 import { Category } from '../../types/Category';
 import { getProducts } from '../../services/products';
-import { getCategories } from '../../services/categories';
+import {
+  getCategories,
+  getProductsByCategory,
+} from '../../services/categories';
 
 export const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
@@ -19,6 +22,7 @@ export const Main = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
   const { handleClearCart } = useCartContext();
 
@@ -60,6 +64,24 @@ export const Main = () => {
     handleClearCart();
   };
 
+  const handleSelectCategory = async (categoryId: string) => {
+    try {
+      setIsLoadingProducts(true);
+
+      if (!categoryId) {
+        const products = await getProducts();
+        return setProducts(products);
+      }
+
+      const productsInCategory = await getProductsByCategory(categoryId);
+      setProducts(productsInCategory);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoadingProducts(false);
+    }
+  };
+
   return (
     <>
       <S.Container>
@@ -69,7 +91,11 @@ export const Main = () => {
         />
 
         <S.CategoriesContainer>
-          <Categories categories={categories} isLoading={isLoading} />
+          <Categories
+            categories={categories}
+            isLoading={isLoading}
+            onSelectCategory={handleSelectCategory}
+          />
         </S.CategoriesContainer>
 
         <S.MenuContainer>
@@ -77,7 +103,7 @@ export const Main = () => {
             products={products}
             selectedTable={selectedTable}
             handleOpenNewOrderModal={handleButtonPress}
-            isLoading={isLoading}
+            isLoading={isLoading || isLoadingProducts}
           />
         </S.MenuContainer>
       </S.Container>
