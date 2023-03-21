@@ -2,6 +2,7 @@ import { API_URL } from '@env';
 import React, { useState } from 'react';
 import { FlatList, TouchableOpacity } from 'react-native';
 import { useCartContext } from '../../context/CartContext';
+import { postCreateOrder } from '../../services/orders';
 import { formatToLocalePrice } from '../../utils/functions';
 import { Button } from '../Button';
 import { MinusCircle } from '../Icons/MinusCircle';
@@ -11,7 +12,7 @@ import { Text } from '../Text';
 import * as S from './Cart.styles';
 import { CartProps } from './interfaces';
 
-export const Cart = ({ handleConfirmOrder }: CartProps) => {
+export const Cart = ({ selectedTable, handleResetOrder }: CartProps) => {
   const { cartItems, handleAddItemToCart, handleDecrementItemFromCart } =
     useCartContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -22,13 +23,29 @@ export const Cart = ({ handleConfirmOrder }: CartProps) => {
     0,
   );
 
-  const handleOpenModal = () => {
+  const handleConfirmOrder = async () => {
     setIsModalVisible(true);
+    const payload = {
+      table: selectedTable,
+      products: cartItems.map((item) => ({
+        product: item.product,
+        quantity: item.quantity,
+      })),
+    };
+
+    try {
+      setIsLoading(true);
+      await postCreateOrder(payload);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
-    handleConfirmOrder();
+    handleResetOrder();
   };
 
   return (
@@ -110,7 +127,7 @@ export const Cart = ({ handleConfirmOrder }: CartProps) => {
         </S.TotalContainer>
 
         <Button
-          onPress={handleOpenModal}
+          onPress={handleConfirmOrder}
           disabled={cartItems.length === 0}
           isLoading={isLoading}
         >

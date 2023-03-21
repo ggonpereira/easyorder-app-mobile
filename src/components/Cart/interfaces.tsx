@@ -1,4 +1,5 @@
 export interface CartProps {
-  handleConfirmOrder: () => void;
+  selectedTable: string;
+  handleResetOrder: () => void;
   isLoading?: boolean;
 }

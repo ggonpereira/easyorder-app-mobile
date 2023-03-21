@@ -115,7 +115,12 @@ export const Main = () => {
           </Button>
         )}
 
-        {selectedTable && <Cart handleConfirmOrder={handleResetOrder} />}
+        {selectedTable && (
+          <Cart
+            selectedTable={selectedTable}
+            handleResetOrder={handleResetOrder}
+          />
+        )}
       </Footer>
 
       <TableModal
